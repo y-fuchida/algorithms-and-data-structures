@@ -8,14 +8,22 @@
 # 4             swap A[j] and A[j-1]
 
 # input
-N = int(input())
-arr = list(map(int, input().split()))
+n = int(input())
+a = list(map(int, input().split()))
 
 # process
+swap = 0
 # 未ソートの部分を先頭を指すループ変数
-for idx in range(0, N-1):
-    print(idx)
+for i in range(n-1):
     # 配列の末尾から要素を比較して、ソート済みまで並び替える
-    # for j in reversed(range(idx+1, len(arr))):
-    #     print(j)
-    # test
+    for j in reversed(range(i+1, n)):
+        # 今の値より左隣が大きかったらswap
+        if a[j-1] > a[j]:
+            a[j-1], a[j] = a[j], a[j-1]
+            swap += 1
+
+print(*a)
+print(swap)
+
+
+
