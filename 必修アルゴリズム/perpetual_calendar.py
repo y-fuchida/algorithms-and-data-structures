@@ -30,14 +30,31 @@ def day_of_week(year, month):
 
 
 if __name__ == '__main__':
-    # 曜日
-    day_of_week_name = ['日', '月', '火', '水', '木', '金', '土']
-
+    days_of_month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     # 年月を入力する
     year = int(input('year = '))
     month = int(input('month = '))
 
-    # 1日の曜日表示
-    print(day_of_week_name[day_of_week(year, month)] + '曜日')
+    if leap_year(year):
+        days_of_month[2] = 29
+
+    first_day = day_of_week(year, month)
+    print("日 月 火 水 木 金 土")
+
+    # 1日の前に空白（１日あたり3文字）を表示する
+    print(' ' * first_day * 3, end = '')
+
+    # 日を表示する
+    for day in (range(1, 1 + days_of_month[month])):
+        # 2文字右詰＋空白1文字＝3文字で表示する
+        print(format(day, '>2') + ' ', end = '')
+
+        # 土曜日を表示したら改行する
+        if (day + first_day - 1) % 7 == 6:
+            print()
+
+    # 最後にもう1度改行する
+    print()
+
 
 
